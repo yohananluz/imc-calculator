@@ -21,8 +21,9 @@ Projeto em Python para calcular o **Índice de Massa Corporal (IMC)** a partir d
 |------------------|--------|
 | `imc.py` | Função `calcular_imc` e programa para o **terminal** (`python imc.py`). |
 | `imc_gui.py` | Janela com **tkinter**; importa `calcular_imc` de `imc.py`. |
-| `run_gui.bat` | Atalho no Windows para abrir a **interface gráfica** sem configurar o PATH. |
-| `run_terminal.bat` | Atalho para rodar a versão **terminal**. |
+| `run_python.bat` | Usado pelos outros `.bat`: procura Python 3.10–3.13 em pastas comuns e no PATH (`py`, `python`). |
+| `run_gui.bat` | Abre a **interface gráfica**. Se não houver Python, exibe como instalar. |
+| `run_terminal.bat` | Roda a versão **terminal**; mesmo comportamento de detecção do Python. |
 | `.vscode/settings.json` | Interpretador Python sugerido para o Cursor/VS Code. |
 | `.vscode/launch.json` | Configurações de execução/debug (F5). |
 
@@ -43,7 +44,7 @@ Ou baixe o ZIP e abra a pasta no Cursor/VS Code.
 
 1. Abra a pasta do projeto no explorador de arquivos.
 2. Dê **dois cliques** em **`run_gui.bat`**.  
-   O script usa o Python instalado em `%LOCALAPPDATA%\Programs\Python\Python312\`. Se a sua instalação estiver em outro caminho, edite a linha do `python.exe` dentro do `.bat`.
+   O projeto precisa ter **Python 3 instalado** na máquina. O `run_python.bat` tenta vários caminhos comuns (Python 3.10 a 3.13 em `AppData` e `Program Files`) e depois `py -3` e `python`. Se nada for encontrado, a janela do prompt mostra links para instalar ([python.org](https://www.python.org/downloads/) ou `winget`).
 3. Na janela, informe **peso** e **altura**, clique em **Calcular**. O IMC e a classificação aparecem abaixo.
 
 **Alternativa pelo terminal** (na pasta do projeto):
