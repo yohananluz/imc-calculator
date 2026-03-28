@@ -12,8 +12,25 @@ Projeto em Python para calcular o **Índice de Massa Corporal (IMC)** a partir d
 
 ## Requisitos
 
+### Para rodar o código-fonte (`.py` / `.bat`)
+
 - **Python 3.10+** (testado com 3.12).
 - **tkinter** (biblioteca padrão; incluída na instalação completa do Python no Windows). Se faltar, reinstale o Python marcando os componentes **tcl/tk**.
+
+### Para usar só o executável gerado
+
+- **Windows 64 bits** (o `.exe` é gerado nesse formato pelo PyInstaller neste projeto).
+- **Não** é necessário instalar Python na máquina que só vai executar o programa.
+
+## Executável sem Python (quem só vai usar o programa)
+
+1. Quem **desenvolve** ou **gera a release** precisa de Python instalado **uma vez** na sua máquina.
+2. Na pasta do projeto, execute **`build_exe.bat`** (ou `python build.py` com o mesmo Python que você usa no projeto). Feche o **`CalculadoraIMC.exe`** antes de gerar de novo, se já tiver uma build aberta ou se o antivírus/OneDrive estiver usando arquivos em `dist\`.
+3. Será criada a pasta **`dist/CalculadoraIMC/`**, contendo **`CalculadoraIMC.exe`** e os arquivos auxiliares na subpasta **`_internal/`**.
+4. **Não apague** `CalculadoraIMC.exe` nem `_internal/`. Para distribuir, envie **a pasta inteira** `CalculadoraIMC` compactada em ZIP (ou copie a pasta completa por pen drive/rede).
+5. No computador de destino, o usuário abre **`CalculadoraIMC.exe`** — não precisa instalar Python.
+
+**Observações:** o antivírus pode demorar a confiar no `.exe` na primeira execução (comum em apps empacotados com PyInstaller). Para macOS ou Linux é preciso **gerar outro binário** nesses sistemas; este fluxo documenta o build em Windows.
 
 ## Estrutura do projeto
 
@@ -24,6 +41,9 @@ Projeto em Python para calcular o **Índice de Massa Corporal (IMC)** a partir d
 | `run_python.bat` | Usado pelos outros `.bat`: procura Python 3.10–3.13 em pastas comuns e no PATH (`py`, `python`). |
 | `run_gui.bat` | Abre a **interface gráfica**. Se não houver Python, exibe como instalar. |
 | `run_terminal.bat` | Roda a versão **terminal**; mesmo comportamento de detecção do Python. |
+| `build_exe.bat` / `build.py` | Geram o **executável** em `dist/CalculadoraIMC/` (PyInstaller). |
+| `CalculadoraIMC.spec` | Configuração do PyInstaller (`imc_gui.py`, módulo `imc`, janela sem console). |
+| `requirements-build.txt` | Dependência só para **build**: `pyinstaller`. |
 | `.vscode/settings.json` | Interpretador Python sugerido para o Cursor/VS Code. |
 | `.vscode/launch.json` | Configurações de execução/debug (F5). |
 
